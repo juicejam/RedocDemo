@@ -1,0 +1,3902 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "中台",
+    "description": "This is a sample server Petstore server.\nYou can find out more about Swagger at\n[http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).\nFor this sample, you can use the api key `special-key` to test the authorization filters.\n\n# Introduction\nThis API is documented in **OpenAPI format** and is based on\n[Petstore sample](http://petstore.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# OpenAPI Specification\nThis API is documented in **OpenAPI format** and is based on\n[Petstore sample](http://petstore.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# Cross-Origin Resource Sharing\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).\nAnd that allows cross-domain communication from the browser.\nAll responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.\n\n# Authentication\n\nPetstore offers two forms of authentication:\n  - API Key\n  - OAuth2\nOAuth2 - an open protocol to allow secure authorization in a simple\nand standard method from web, mobile and desktop applications.\n\n<SecurityDefinitions />\n"
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "会员管理",
+      "description": null
+    },
+    {
+      "name": "中台用户一码通",
+      "description": null
+    },
+    {
+      "name": "卡券管理",
+      "description": null
+    },
+    {
+      "name": "消息中心",
+      "description": null
+    },
+    {
+      "name": "CRM",
+      "description": null
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "//api/member/PInfo": {
+      "post": {
+        "tags": [
+          "会员管理"
+        ],
+        "summary": "个人基本信息",
+        "description": "此接口用于查看会员基本信息",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员Id Encrypt加密数据",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "source": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "1000"
+                  },
+                  "description": "来源"
+                }
+              },
+              "required": [
+                "member_id",
+                "source"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "group_id": {
+                      "type": "null"
+                    },
+                    "id": {
+                      "type": "null"
+                    },
+                    "member_id_des": {
+                      "type": "null"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "img_url": {
+                      "type": "string"
+                    },
+                    "capital_member_card": {
+                      "type": "null"
+                    },
+                    "nick_name": {
+                      "type": "null"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "birth": {
+                      "type": "string"
+                    },
+                    "sex": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "number"
+                    },
+                    "integralcount": {
+                      "type": "number"
+                    },
+                    "couponcount": {
+                      "type": "number"
+                    },
+                    "message": {
+                      "type": "number"
+                    },
+                    "msg_url": {
+                      "type": "null"
+                    },
+                    "Amount": {
+                      "type": "null"
+                    },
+                    "is_office": {
+                      "type": "number"
+                    },
+                    "integral": {
+                      "type": "number"
+                    },
+                    "is_send": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/member/UpUserInfo": {
+      "post": {
+        "tags": [
+          "会员管理"
+        ],
+        "summary": "会员修改个人信息",
+        "description": "此接口用于会员修改个人信息",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "phone_num": {
+                  "type": "string",
+                  "description": "电话号码",
+                  "mock": {
+                    "mock": "13764075073"
+                  }
+                },
+                "sex": {
+                  "type": "string",
+                  "description": "性别（1、男 2、女）",
+                  "mock": {
+                    "mock": "1"
+                  }
+                },
+                "nick_name": {
+                  "type": "string",
+                  "description": "昵称",
+                  "mock": {
+                    "mock": "小小"
+                  }
+                },
+                "username": {
+                  "type": "string",
+                  "description": "真实姓名"
+                },
+                "birth": {
+                  "type": "string",
+                  "description": "生日"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "来源",
+                  "mock": {
+                    "mock": "1000"
+                  }
+                }
+              },
+              "required": [
+                "phone_num",
+                "sex",
+                "nick_name",
+                "username",
+                "source",
+                "birth"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/member/WxLogin": {
+      "post": {
+        "tags": [
+          "会员管理"
+        ],
+        "summary": "会员微信授权登录接口",
+        "description": "此接口用于微信授权登录",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "授权用的code值"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/member/UpHeadImg": {
+      "post": {
+        "tags": [
+          "会员管理"
+        ],
+        "summary": "会员更改头像",
+        "description": "此接口用于会员更改头像",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员id Encrypt加密数据",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "headimg": {
+                  "type": "string",
+                  "description": "头像图片",
+                  "mock": {
+                    "mock": "data:image/jpeg;base64,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"
+                  }
+                },
+                "source": {
+                  "type": "string",
+                  "description": "来源",
+                  "mock": {
+                    "mock": "1000"
+                  }
+                }
+              },
+              "required": [
+                "member_id",
+                "headimg",
+                "source"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/member/NoPwdLogin": {
+      "post": {
+        "tags": [
+          "会员管理"
+        ],
+        "summary": "会员登录接口",
+        "description": "此接口用于免密码注册、登录",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "phone_num": {
+                  "type": "integer",
+                  "description": "手机号",
+                  "mock": {
+                    "mock": "13052359832"
+                  }
+                },
+                "vilaCode": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "100011"
+                  },
+                  "description": "手机验证码"
+                },
+                "truthName": {
+                  "type": "string",
+                  "description": "真实姓名",
+                  "mock": {
+                    "mock": "小陈"
+                  }
+                },
+                "source": {
+                  "type": "string",
+                  "description": "来源",
+                  "mock": {
+                    "mock": "1000"
+                  }
+                },
+                "isregist": {
+                  "type": "number",
+                  "description": "是否注册（1注册 0登录）",
+                  "mock": {
+                    "mock": "1"
+                  }
+                },
+                "tag_code": {
+                  "type": "string",
+                  "description": "来源标签（选填项）,IOS客户端需传参数（“APP”），用于首次注册、登录送积分活动"
+                }
+              },
+              "required": [
+                "phone_num",
+                "vilaCode",
+                "tag_code",
+                "isregist",
+                "source",
+                "truthName"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/member/BatchRegister": {
+      "post": {
+        "tags": [
+          "会员管理"
+        ],
+        "summary": "批量注册凯德星会员",
+        "description": "批量注册凯德星会员接口\n此接口用于批量注册凯德星会员。",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "shop_id": {
+                  "type": "integer",
+                  "description": "渠道来源（凯德星2.0提供）",
+                  "mock": {
+                    "mock": "6"
+                  }
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "phone": {
+                        "type": "string",
+                        "description": "注册手机号（登入账号）",
+                        "mock": {
+                          "mock": "13888888888"
+                        }
+                      },
+                      "pwd": {
+                        "type": "string",
+                        "description": "密码"
+                      },
+                      "location_id": {
+                        "type": "string",
+                        "description": "商场代码（凯德星2.0提供）"
+                      },
+                      "username": {
+                        "type": "string",
+                        "description": "用户名称"
+                      },
+                      "sex": {
+                        "type": "integer",
+                        "description": "性别（1：男，2：女）"
+                      },
+                      "birth": {
+                        "type": "string",
+                        "description": "生日（1991-08-08）",
+                        "mock": {
+                          "mock": "1991-08-08"
+                        }
+                      },
+                      "m_from": {
+                        "type": "integer",
+                        "description": "商场来源（凯德星2.0提供）"
+                      }
+                    },
+                    "required": [
+                      "phone",
+                      "pwd",
+                      "birth",
+                      "sex",
+                      "username",
+                      "location_id",
+                      "m_from"
+                    ]
+                  },
+                  "description": "注册信息"
+                }
+              },
+              "required": [
+                "shop_id",
+                "users"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "memberCardNo": {
+                        "type": "string"
+                      },
+                      "customerNo": {
+                        "type": "string"
+                      },
+                      "phone": {
+                        "type": "string"
+                      },
+                      "memberNo": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "number"
+                      },
+                      "log_msg": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "memberCardNo",
+                      "customerNo",
+                      "phone",
+                      "memberNo",
+                      "status",
+                      "log_msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/member/StarIntegral": {
+      "post": {
+        "tags": [
+          "会员管理"
+        ],
+        "summary": "星积分详细",
+        "description": "此接口用于查看我的星积分",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员ID",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "spark_id": {
+                  "type": "string",
+                  "description": "星宝贝ID（传0时查我，不为0时查询对应的星宝贝）",
+                  "mock": {
+                    "mock": "36543"
+                  }
+                },
+                "mall_id": {
+                  "type": "string",
+                  "description": "商场ID",
+                  "mock": {
+                    "mock": "10"
+                  }
+                },
+                "source": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "1000"
+                  },
+                  "description": "来源"
+                }
+              },
+              "required": [
+                "member_id",
+                "spark_id",
+                "mall_id",
+                "source"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "integral_balance": {
+                      "type": "number"
+                    },
+                    "coin_balance": {
+                      "type": "number"
+                    },
+                    "expiry_integral": {
+                      "type": "string"
+                    },
+                    "expiry_date": {
+                      "type": "string"
+                    },
+                    "noread_coupon_num": {
+                      "type": "number"
+                    },
+                    "noread_order_num": {
+                      "type": "number"
+                    },
+                    "is_open_express": {
+                      "type": "number"
+                    },
+                    "is_open_spark": {
+                      "type": "number"
+                    },
+                    "integral": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "sparks": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Encrypt/Encode": {
+      "post": {
+        "tags": [
+          "中台用户一码通"
+        ],
+        "summary": "加密",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "memberNumber": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "860000000098767"
+                  }
+                },
+                "channel": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "OneApp"
+                  }
+                }
+              },
+              "required": [
+                "memberNumber",
+                "channel"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Encrypt/Decode": {
+      "post": {
+        "tags": [
+          "中台用户一码通"
+        ],
+        "summary": "解密",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "ciphertext": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "ITJmnSfBm3jVfvh4E7Msbvy1sGONHo2DLUiksCFkEYcShNVOHMg6JawGgXfYU63f"
+                  }
+                }
+              },
+              "required": [
+                "ciphertext"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Coupon/CouponActDetail": {
+      "post": {
+        "tags": [
+          "卡券管理"
+        ],
+        "summary": "免费领券详情",
+        "description": "此接口用于获取免费领券详情",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员ID",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "act_id": {
+                  "type": "string",
+                  "description": "活动编号（凯德星2.0提供）",
+                  "mock": {
+                    "mock": "13013"
+                  }
+                }
+              },
+              "required": [
+                "member_id",
+                "act_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Coupon/CouponDraw": {
+      "post": {
+        "tags": [
+          "卡券管理"
+        ],
+        "summary": "会员免费领取卡券",
+        "description": "此接口用于会员免费领取卡券",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员ID",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "act_id": {
+                  "type": "string",
+                  "description": "活动编号（凯德星2.0提供）",
+                  "mock": {
+                    "mock": "13013"
+                  }
+                }
+              },
+              "required": [
+                "member_id",
+                "act_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Coupon/CouponList": {
+      "post": {
+        "tags": [
+          "卡券管理"
+        ],
+        "summary": "卡券列表_卡券相关接口",
+        "description": "此接口用于查看我的卡券",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员ID",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "coupon_type": {
+                  "type": "string",
+                  "description": "卡券类型（-1.查全部，0.代金券，1.抵用券，2.停车券，4.房晚券）"
+                },
+                "is_his": {
+                  "type": "string",
+                  "description": "是否过期（1.查已过期已使用，0查当前可用）"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "当前页"
+                },
+                "pageSize": {
+                  "type": "integer",
+                  "description": "页的大小"
+                }
+              },
+              "required": [
+                "member_id",
+                "coupon_type",
+                "pageSize",
+                "page",
+                "is_his"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "isEnd": {
+                      "type": "string"
+                    },
+                    "cashCoupon": {
+                      "type": "number"
+                    },
+                    "vouchersCoupon": {
+                      "type": "number"
+                    },
+                    "parkCoupon": {
+                      "type": "number"
+                    },
+                    "ascottCoupon": {
+                      "type": "number"
+                    },
+                    "coupon_list": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Coupon/UserCenterCouponList": {
+      "post": {
+        "tags": [
+          "卡券管理"
+        ],
+        "summary": "卡券列表_会员中心相关接口",
+        "description": "此接口用于查看我的卡券",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员ID",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "coupon_type": {
+                  "type": "string",
+                  "description": "卡券类型（-1.查全部，0.代金券，1.抵用券，2.停车券，4.房晚券）"
+                },
+                "is_his": {
+                  "type": "string",
+                  "description": "是否过期（1.查已过期已使用，0查当前可用）"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "当前页"
+                },
+                "pageSize": {
+                  "type": "integer",
+                  "description": "页的大小"
+                }
+              },
+              "required": [
+                "member_id",
+                "coupon_type",
+                "pageSize",
+                "page",
+                "is_his"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "isEnd": {
+                      "type": "string"
+                    },
+                    "cashCoupon": {
+                      "type": "number"
+                    },
+                    "vouchersCoupon": {
+                      "type": "number"
+                    },
+                    "parkCoupon": {
+                      "type": "number"
+                    },
+                    "ascottCoupon": {
+                      "type": "number"
+                    },
+                    "coupon_list": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Coupon/CouponDetail": {
+      "post": {
+        "tags": [
+          "卡券管理"
+        ],
+        "summary": "卡券详细",
+        "description": "此接口用于查看卡券详细",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员id",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "coupon_id": {
+                  "type": "string",
+                  "description": "卡券id",
+                  "mock": {
+                    "mock": "11946"
+                  }
+                },
+                "status": {
+                  "type": "string",
+                  "description": "状态（0、未使用 1、已使用 2、已过期）"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "当前页",
+                  "mock": {
+                    "mock": "1"
+                  }
+                },
+                "pageSize": {
+                  "type": "integer",
+                  "description": "页的大小",
+                  "mock": {
+                    "mock": "10"
+                  }
+                }
+              },
+              "required": [
+                "member_id",
+                "coupon_id",
+                "pageSize",
+                "page",
+                "status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "list": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Coupon/CouponVerify": {
+      "post": {
+        "tags": [
+          "卡券管理"
+        ],
+        "summary": "卡券核销",
+        "description": "此接口用于卡券核销",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "merchant_user": {
+                  "type": "string",
+                  "description": "商户账号",
+                  "mock": {
+                    "mock": "1021195"
+                  }
+                },
+                "merchant_pwd": {
+                  "type": "string",
+                  "description": "核销密码",
+                  "mock": {
+                    "mock": "kd048321"
+                  }
+                },
+                "coupon_code": {
+                  "type": "string",
+                  "description": "卡券号",
+                  "mock": {
+                    "mock": "044096608216"
+                  }
+                }
+              },
+              "required": [
+                "merchant_user",
+                "merchant_pwd",
+                "coupon_code"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Coupon/ExchangeCode": {
+      "post": {
+        "tags": [
+          "卡券管理"
+        ],
+        "summary": "领取卡券",
+        "description": "此接口用于兑换码领券",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "member_id": {
+                  "type": "string",
+                  "description": "会员id(Encrypt加密数据)",
+                  "mock": {
+                    "mock": "4B5A6819F33A8FFE4604F46FC9BCF90D"
+                  }
+                },
+                "phone_num": {
+                  "type": "string",
+                  "description": "会员电话号码",
+                  "mock": {
+                    "mock": "13586775643"
+                  }
+                },
+                "code": {
+                  "type": "integer",
+                  "description": "兑换码(14位数字)"
+                }
+              },
+              "required": [
+                "member_id",
+                "phone_num",
+                "code"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Message/AddMessage": {
+      "post": {
+        "tags": [
+          "消息中心"
+        ],
+        "summary": "新增消息",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "templateId": {
+                  "type": "number",
+                  "description": "模板id",
+                  "mock": {
+                    "mock": "1"
+                  }
+                },
+                "title": {
+                  "type": "string",
+                  "description": "标题",
+                  "mock": {
+                    "mock": "礼品卡模板"
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "内容",
+                  "mock": {
+                    "mock": "积分变更提醒 2018年8月21日 18:01 亲爱的顾客，您好！  会员姓名：阿飞 会员账号：1 积分变更: 10 剩余积分: 90002"
+                  }
+                },
+                "messageJson": {
+                  "type": "string",
+                  "description": "json内容(待定)"
+                },
+                "channel": {
+                  "type": "string",
+                  "description": "渠道"
+                },
+                "customerNumber": {
+                  "type": "string",
+                  "description": "客户编号"
+                },
+                "memberNumber": {
+                  "type": "string",
+                  "description": "会员编号"
+                },
+                "memberId": {
+                  "type": "string",
+                  "description": "会员id"
+                }
+              },
+              "required": [
+                "templateId",
+                "title",
+                "content",
+                "channel",
+                "customerNumber"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "guid": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Message/EditMessage": {
+      "post": {
+        "tags": [
+          "消息中心"
+        ],
+        "summary": "消息已读",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "guid": {
+                  "type": "string",
+                  "description": "模板id",
+                  "mock": {
+                    "mock": "ca71b908-bb5a-4e6b-b6d4-c2585f00e75c"
+                  }
+                }
+              },
+              "required": [
+                "guid"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/Message/MessageList": {
+      "get": {
+        "tags": [
+          "消息中心"
+        ],
+        "summary": "消息列表",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "description": "条件过滤：标题",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "页数",
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "description": "页大小",
+            "type": "string"
+          },
+          {
+            "name": "customerNumber",
+            "in": "query",
+            "required": false,
+            "description": "客户编号",
+            "type": "string"
+          },
+          {
+            "name": "memberNumber",
+            "in": "query",
+            "required": false,
+            "description": "会员编号",
+            "type": "string"
+          },
+          {
+            "name": "memberId",
+            "in": "query",
+            "required": false,
+            "description": "会员id",
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "description": "标识列",
+                  "mock": {
+                    "mock": "1"
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "名称"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "模板内容"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "描述"
+                },
+                "sortNo": {
+                  "type": "integer",
+                  "description": "序号"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "content",
+                "description",
+                "sortNo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "isend": {
+                      "type": "string"
+                    },
+                    "messagelist": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "Is_read": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "to_member_id": {
+                            "type": "number"
+                          },
+                          "from_member_id": {
+                            "type": "number"
+                          },
+                          "msg": {
+                            "type": "string"
+                          },
+                          "add_time": {
+                            "type": "string"
+                          },
+                          "is_read": {
+                            "type": "number"
+                          },
+                          "img_url": {
+                            "type": "string"
+                          },
+                          "link_url": {
+                            "type": "string"
+                          },
+                          "image_text": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/Authenticate": {
+      "post": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.1 User Authenticate",
+        "description": "For each 3rd party, customer id and password will be provided. When calling Web API, the following two values have to be provided for authentication and authorization.\n\nThis is the customer credential in format of CustomerId, CustomerPassword.\nNote that CustomerId and CustomerPassword are in base-64 ASCII encoded\nstring.\nFor example:\nCustomer Id: ESITE In base-64 encoded string: RVNJVEU=\nCustomer Password: U3YRKa6E  In base-64 encoded string:\nVTNZUkthNkU=\nThe SvcAuth thus becomes <span class=\"colour\" style=\"color:rgb(255, 0, 0)\">RVNJVEU=, VTNZUkthNkU=</span>\n\nA token indicate which user is performing the API call. This token is retrieved\nusing Authentication Service by supplying username and password, which will\nbe provided separately from customer id and password. Please refer to Web\nAPI document section 4.1.1 for more details",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "ESITE"
+                  }
+                },
+                "password": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "U3YRKa6E"
+                  }
+                },
+                "svcauth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                }
+              },
+              "required": [
+                "username",
+                "password",
+                "svcauth"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/RegisterTransaction": {
+      "post": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.13 Register Transaction",
+        "description": "To register a transaction, the follow Web API can be called.",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "token (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ProfileToken",
+            "in": "header",
+            "description": "ProfileToken (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "StoreCode": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "CN046"
+                  }
+                },
+                "POSId": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "ESITE"
+                  }
+                },
+                "OperatorId": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "ESITE"
+                  }
+                },
+                "TransactionDate": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "2013-02-28T00:00:00+08:00"
+                  }
+                },
+                "ReceiptNumber": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "09000923R00001"
+                  }
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "PromotionCodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "mock": {
+                      "mock": "ESITEPROMO1"
+                    }
+                  }
+                },
+                "Items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Currency": {
+                        "type": "string",
+                        "mock": {
+                          "mock": "CNY"
+                        }
+                      },
+                      "ItemCode": {
+                        "type": "string",
+                        "mock": {
+                          "mock": "PUR01"
+                        }
+                      },
+                      "Amount": {
+                        "type": "number",
+                        "mock": {
+                          "mock": "0"
+                        }
+                      }
+                    },
+                    "required": [
+                      "Currency",
+                      "ItemCode",
+                      "Amount"
+                    ]
+                  }
+                },
+                "Payments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "PaymentType": {
+                        "type": "string",
+                        "mock": {
+                          "mock": "CASH"
+                        }
+                      },
+                      "Currency": {
+                        "type": "string",
+                        "mock": {
+                          "mock": "CNY"
+                        }
+                      },
+                      "Amount": {
+                        "type": "number",
+                        "mock": {
+                          "mock": "0"
+                        }
+                      }
+                    },
+                    "required": [
+                      "PaymentType",
+                      "Currency",
+                      "Amount"
+                    ]
+                  }
+                },
+                "MemberNumber": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "650000000002239"
+                  }
+                },
+                "SvcAuth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                }
+              },
+              "required": [
+                "StoreCode",
+                "POSId",
+                "OperatorId",
+                "TransactionDate",
+                "ReceiptNumber",
+                "Description",
+                "PromotionCodes",
+                "Items",
+                "Payments",
+                "MemberNumber",
+                "SvcAuth"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "Items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "Identifier": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Message": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/SignIn": {
+      "post": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.2.2 SignIn",
+        "description": "Login member with customer number and password\n\nThe following Web API can be used for existing member to login\n\nThe highlighted token will be used as ProfileToken in other calls later as profile credential.",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "token (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "Password": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "EddJRj8"
+                  }
+                },
+                "SvcAuth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                },
+                "CustomerNumber": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "00384123"
+                  }
+                }
+              },
+              "required": [
+                "Password",
+                "SvcAuth",
+                "CustomerNumber"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "CustomerNumber": {
+                      "type": "string"
+                    },
+                    "Token": {
+                      "type": "string"
+                    },
+                    "ExpiryDate": {
+                      "type": "string"
+                    },
+                    "NeedPasswordChange": {
+                      "type": "boolean"
+                    },
+                    "OldPassword": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/SearchSimple": {
+      "post": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.21 SearchSimple",
+        "description": "Search Profile to get customer number with Mobile Number.\n\nThe following Web API can be used for searching profile with Mobile Number only\n\nIn the event that response contains more than 1 customer number, it means the mobile number is used in multiple profiles. In that case, login should not be allowed",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "token (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "MobileNumber": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "91183282"
+                  }
+                },
+                "SvcAuth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                }
+              },
+              "required": [
+                "MobileNumber",
+                "SvcAuth"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "CustomerNumber": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "CustomerNumber"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/RegisterMember": {
+      "post": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.5 Register New Member",
+        "description": "The following Web API can be used to create a new profile.",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "token (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "IC": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "09877890"
+                  }
+                },
+                "IDType": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "身份证"
+                  }
+                },
+                "MobileNumber": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "09877890"
+                  }
+                },
+                "Name": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "09877890"
+                  }
+                },
+                "Birthday": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "1990-11-24T00:00:00+08:00"
+                  }
+                },
+                "GenderCode": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "F"
+                  }
+                },
+                "Password": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "123456"
+                  }
+                },
+                "LocationCode": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "SIN001"
+                  }
+                },
+                "PromoCodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "mock": {
+                      "mock": "CODE1"
+                    }
+                  }
+                },
+                "SvcAuth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                }
+              },
+              "required": [
+                "IC",
+                "IDType",
+                "MobileNumber",
+                "Name",
+                "Birthday",
+                "GenderCode",
+                "Password",
+                "LocationCode",
+                "PromoCodes",
+                "SvcAuth"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "CustomerNumber": {
+                      "type": "string"
+                    },
+                    "MemberNumber": {
+                      "type": "string"
+                    },
+                    "MembershipType": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/Summary": {
+      "get": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.6 Get Point Balance and Breakdown",
+        "description": "The following Web API can be used to get point balance and breakdowns",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "token (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ProfileToken",
+            "in": "header",
+            "description": "ProfileToken (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "SvcAuth",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "CustomerNumber",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "OldPassword": {
+                  "type": "string"
+                },
+                "Password": {
+                  "type": "string"
+                },
+                "SvcAuth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                }
+              },
+              "required": [
+                "OldPassword",
+                "SvcAuth",
+                "Password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "MembershipSummaries": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "AccountSummaries": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "PointType": {
+                                  "type": "string"
+                                },
+                                "Earned": {
+                                  "type": "number"
+                                },
+                                "TransferIn": {
+                                  "type": "number"
+                                },
+                                "TransferOut": {
+                                  "type": "number"
+                                },
+                                "Refund": {
+                                  "type": "number"
+                                },
+                                "Used": {
+                                  "type": "number"
+                                },
+                                "Expired": {
+                                  "type": "number"
+                                },
+                                "NearestExpiringDate": {
+                                  "type": "null"
+                                },
+                                "NearestExpiringAmount": {
+                                  "type": "number"
+                                },
+                                "Balance": {
+                                  "type": "number"
+                                },
+                                "ExpirySummaries": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Amount": {
+                                        "type": "number"
+                                      },
+                                      "ExpiryDate": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "Amount",
+                                      "ExpiryDate"
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "ChanceSummaries": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Name": {
+                                  "type": "string"
+                                },
+                                "Earned": {
+                                  "type": "number"
+                                },
+                                "Balance": {
+                                  "type": "number"
+                                },
+                                "Used": {
+                                  "type": "number"
+                                },
+                                "Transfer": {
+                                  "type": "number"
+                                },
+                                "Expired": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          "SpendingSummaries": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Currency": {
+                                  "type": "string"
+                                },
+                                "TotalPurchase": {
+                                  "type": "number"
+                                },
+                                "NoOfTransactions": {
+                                  "type": "number"
+                                },
+                                "AvgPurchase": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          "CardSummaries": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "PromotionSummaries": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "BenefitSummaries": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "PointBucketSummaries": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Name": {
+                                  "type": "string"
+                                },
+                                "Balance": {
+                                  "type": "number"
+                                },
+                                "Earned": {
+                                  "type": "number"
+                                },
+                                "TransferIn": {
+                                  "type": "number"
+                                },
+                                "TransferOut": {
+                                  "type": "number"
+                                },
+                                "Refund": {
+                                  "type": "number"
+                                },
+                                "Used": {
+                                  "type": "number"
+                                },
+                                "ExpiryDate": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "Name",
+                                "Balance",
+                                "Earned",
+                                "TransferIn",
+                                "TransferOut",
+                                "Refund",
+                                "Used",
+                                "ExpiryDate"
+                              ]
+                            }
+                          },
+                          "ChanceBucketSummaries": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Name": {
+                                  "type": "string"
+                                },
+                                "Balance": {
+                                  "type": "number"
+                                },
+                                "Earned": {
+                                  "type": "number"
+                                },
+                                "TransferIn": {
+                                  "type": "number"
+                                },
+                                "TransferOut": {
+                                  "type": "number"
+                                },
+                                "Refund": {
+                                  "type": "number"
+                                },
+                                "Used": {
+                                  "type": "number"
+                                },
+                                "ExpiryDate": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "Type": {
+                            "type": "string"
+                          },
+                          "Tier": {
+                            "type": "string"
+                          },
+                          "MemberNo": {
+                            "type": "string"
+                          },
+                          "ValidFrom": {
+                            "type": "string"
+                          },
+                          "ExpiryDate": {
+                            "type": "string"
+                          },
+                          "Status": {
+                            "type": "string"
+                          },
+                          "JoinLocationCode": {
+                            "type": "string"
+                          },
+                          "JoinLocationName": {
+                            "type": "string"
+                          },
+                          "LastPeriodStartDate": {
+                            "type": "null"
+                          },
+                          "TransactionDate": {
+                            "type": "null"
+                          },
+                          "MemberSince": {
+                            "type": "null"
+                          },
+                          "TimezoneOffsetSeconds": {
+                            "type": "number"
+                          },
+                          "NoofCards": {
+                            "type": "null"
+                          },
+                          "PromoCode": {
+                            "type": "null"
+                          }
+                        }
+                      }
+                    },
+                    "CustomerNumber": {
+                      "type": "string"
+                    },
+                    "Title": {
+                      "type": "string"
+                    },
+                    "FirstName": {
+                      "type": "string"
+                    },
+                    "LastName": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "NickName": {
+                      "type": "string"
+                    },
+                    "IC": {
+                      "type": "string"
+                    },
+                    "DOB": {
+                      "type": "string"
+                    },
+                    "JoinDate": {
+                      "type": "string"
+                    },
+                    "Mobile": {
+                      "type": "string"
+                    },
+                    "MobileCountryCode": {
+                      "type": "null"
+                    },
+                    "Email": {
+                      "type": "string"
+                    },
+                    "Remark": {
+                      "type": "null"
+                    },
+                    "GenderCode": {
+                      "type": "string"
+                    },
+                    "NationalityCode": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/GetRecentTransactions": {
+      "get": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.7.2 Get member’s recent transactions",
+        "description": "The following Web API can be used to get member’s recent transactions",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "token (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ProfileToken",
+            "in": "header",
+            "description": "ProfileToken (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "SvcAuth",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "memberNumber",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "OldPassword": {
+                  "type": "string"
+                },
+                "Password": {
+                  "type": "string"
+                },
+                "SvcAuth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                }
+              },
+              "required": [
+                "OldPassword",
+                "SvcAuth",
+                "Password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Date": {
+                        "type": "string"
+                      },
+                      "ReceiptNo": {
+                        "type": "string"
+                      },
+                      "LocationCode": {
+                        "type": "string"
+                      },
+                      "Location": {
+                        "type": "string"
+                      },
+                      "PaymentMode": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Description": {
+                        "type": [
+                          "null",
+                          "string"
+                        ]
+                      },
+                      "PromotionCodes": {
+                        "type": [
+                          "null",
+                          "string"
+                        ]
+                      },
+                      "Rating": {
+                        "type": [
+                          "null",
+                          "number"
+                        ]
+                      },
+                      "CustomData": {
+                        "type": "null"
+                      },
+                      "Points": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Date": {
+                              "type": "string"
+                            },
+                            "Location": {
+                              "type": "string"
+                            },
+                            "LocationCode": {
+                              "type": "string"
+                            },
+                            "ProductType": {
+                              "type": "string"
+                            },
+                            "ProductName": {
+                              "type": "string"
+                            },
+                            "Description": {
+                              "type": "string"
+                            },
+                            "ExpiryDate": {
+                              "type": "string"
+                            },
+                            "ValidFrom": {
+                              "type": "string"
+                            },
+                            "Currency": {
+                              "type": "string"
+                            },
+                            "Amount": {
+                              "type": "number"
+                            },
+                            "Type": {
+                              "type": "string"
+                            },
+                            "EntryUser": {
+                              "type": "string"
+                            },
+                            "SalesPerson": {
+                              "type": [
+                                "null",
+                                "string"
+                              ]
+                            },
+                            "Registrator": {
+                              "type": [
+                                "null",
+                                "string"
+                              ]
+                            },
+                            "Identifier": {
+                              "type": "null"
+                            },
+                            "HasHistory": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "Date",
+                            "Location",
+                            "LocationCode",
+                            "ProductType",
+                            "ProductName",
+                            "Description",
+                            "ExpiryDate",
+                            "ValidFrom",
+                            "Currency",
+                            "Amount",
+                            "Type",
+                            "EntryUser",
+                            "SalesPerson",
+                            "Registrator",
+                            "Identifier",
+                            "HasHistory"
+                          ]
+                        }
+                      },
+                      "Purchases": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Identifier": {
+                              "type": "string"
+                            },
+                            "Date": {
+                              "type": "string"
+                            },
+                            "Location": {
+                              "type": "string"
+                            },
+                            "LocationCode": {
+                              "type": "string"
+                            },
+                            "ProductNo": {
+                              "type": "string"
+                            },
+                            "ProductType": {
+                              "type": "string"
+                            },
+                            "ProductName": {
+                              "type": "string"
+                            },
+                            "Description": {
+                              "type": "string"
+                            },
+                            "ValidFrom": {
+                              "type": "string"
+                            },
+                            "Currency": {
+                              "type": "string"
+                            },
+                            "Amount": {
+                              "type": "number"
+                            },
+                            "Type": {
+                              "type": "string"
+                            },
+                            "EntryUser": {
+                              "type": "string"
+                            },
+                            "SalesPerson": {
+                              "type": "string"
+                            },
+                            "Registrator": {
+                              "type": "string"
+                            },
+                            "HasHistory": {
+                              "type": "boolean"
+                            },
+                            "ExpiryDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Identifier",
+                            "Date",
+                            "Location",
+                            "LocationCode",
+                            "ProductNo",
+                            "ProductType",
+                            "ProductName",
+                            "Description",
+                            "ValidFrom",
+                            "Currency",
+                            "Amount",
+                            "Type",
+                            "EntryUser",
+                            "SalesPerson",
+                            "Registrator",
+                            "HasHistory"
+                          ]
+                        }
+                      },
+                      "Chances": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Date": {
+                              "type": "string"
+                            },
+                            "Location": {
+                              "type": "string"
+                            },
+                            "LocationCode": {
+                              "type": "string"
+                            },
+                            "ProductType": {
+                              "type": "string"
+                            },
+                            "ProductName": {
+                              "type": "string"
+                            },
+                            "Description": {
+                              "type": "string"
+                            },
+                            "ExpiryDate": {
+                              "type": "string"
+                            },
+                            "ValidFrom": {
+                              "type": "string"
+                            },
+                            "Currency": {
+                              "type": "string"
+                            },
+                            "Amount": {
+                              "type": "number"
+                            },
+                            "Type": {
+                              "type": "string"
+                            },
+                            "EntryUser": {
+                              "type": "string"
+                            },
+                            "SalesPerson": {
+                              "type": "null"
+                            },
+                            "Registrator": {
+                              "type": "string"
+                            },
+                            "Identifier": {
+                              "type": "null"
+                            },
+                            "HasHistory": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "Date",
+                            "Location",
+                            "LocationCode",
+                            "ProductType",
+                            "ProductName",
+                            "Description",
+                            "ExpiryDate",
+                            "ValidFrom",
+                            "Currency",
+                            "Amount",
+                            "Type",
+                            "EntryUser",
+                            "SalesPerson",
+                            "Registrator",
+                            "Identifier",
+                            "HasHistory"
+                          ]
+                        }
+                      },
+                      "PaymentModeString": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "Date",
+                      "ReceiptNo",
+                      "LocationCode",
+                      "Location",
+                      "PaymentMode",
+                      "Description",
+                      "PromotionCodes",
+                      "Rating",
+                      "CustomData",
+                      "Points",
+                      "Purchases",
+                      "Chances",
+                      "PaymentModeString"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/UpdateProfile": {
+      "post": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.19 Update Profile",
+        "description": "The following web API can be used to update profile partially",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "token (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ProfileToken",
+            "in": "header",
+            "description": "ProfileToken (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "IC": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "S1234567D"
+                  }
+                },
+                "FirstName": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "Michael Jackson"
+                  }
+                },
+                "DOB": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "1990-12-25T00:00:00+08:00"
+                  }
+                },
+                "GenderCode": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "M"
+                  }
+                },
+                "SvcAuth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                },
+                "customerNumber": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "00384123"
+                  }
+                }
+              },
+              "required": [
+                "IC",
+                "FirstName",
+                "SvcAuth",
+                "customerNumber",
+                "GenderCode",
+                "DOB"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "//api/CRM/GetCustomerTags": {
+      "get": {
+        "tags": [
+          "CRM"
+        ],
+        "summary": "1.25 Get Customer’s Tags",
+        "description": "The following API can be used to get customer’s all tags.",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "thirdcode",
+            "in": "header",
+            "description": "thirdcode (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "description": "sign (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "timestamp (Only:)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "token (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ProfileToken",
+            "in": "header",
+            "description": "ProfileToken (Only:undefined)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customerNumber",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "SvcAuth",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "OldPassword": {
+                  "type": "string"
+                },
+                "Password": {
+                  "type": "string"
+                },
+                "SvcAuth": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "RVNJVEU=, VTNZUkthNkU="
+                  }
+                }
+              },
+              "required": [
+                "OldPassword",
+                "SvcAuth",
+                "Password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "TagCode": {
+                        "type": "string"
+                      },
+                      "LocationCode": {
+                        "type": "string"
+                      },
+                      "Score": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "TagCode",
+                      "LocationCode",
+                      "Score"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
